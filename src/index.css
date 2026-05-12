@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --daily-bg: 7 19 18;
+  --daily-panel: 15 32 31;
+  --daily-mint: 53 243 199;
+  --daily-cyan: 34 211 238;
+  --daily-ink: 246 255 253;
+  --daily-muted: 138 161 157;
+  color-scheme: dark;
+  background: rgb(var(--daily-bg));
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+:root[data-theme="light"] {
+  --daily-bg: 239 246 244;
+  --daily-panel: 255 255 255;
+  --daily-ink: 13 25 24;
+  --daily-muted: 91 112 108;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: rgb(var(--daily-bg));
+  overscroll-behavior-y: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  touch-action: manipulation;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
