@@ -1,0 +1,40 @@
+.reflection { --line: rgb(var(--daily-muted) / .3); display: grid; gap: 18px; color: rgb(var(--daily-ink)); }
+.reflection button, .reflection summary { touch-action: manipulation; }
+.reflection :focus-visible { outline: 2px solid rgb(var(--daily-ink)); outline-offset: 3px; }
+.reflection button:disabled { opacity: .44; }
+.rf-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 16px; }
+.rf-switch button { padding: 10px; border-radius: 12px; font-weight: 650; color: rgb(var(--daily-muted)); }
+.rf-switch [aria-pressed="true"], .reflection .rf-primary { background: rgb(var(--daily-mint)); color: #071b18; }
+.rf-date-panel, .rf-editor, .rf-sources { border: 1px solid var(--line); border-radius: 22px; padding: clamp(14px,4vw,22px); background: rgb(var(--daily-panel)); }
+.rf-nav, .rf-arrows, .rf-kicker, .rf-date-line, .rf-buttons, .rf-save, .rf-sources h3 { display: flex; align-items: center; gap: 8px; }
+.rf-nav, .rf-date-line, .rf-save, .rf-sources h3 { justify-content: space-between; }
+.rf-nav h2 { font-weight: 650; margin-top: 5px; font-size: clamp(16px,4vw,20px); line-height: 1.5; }
+.rf-kicker, .rf-label, .rf-sources small { font-size: 12px; font-weight: 650; color: rgb(var(--daily-muted)); }
+.rf-arrows { gap: 2px; }
+.rf-arrows button { padding: 7px 3px; }
+.rf-weekstrip { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; margin: 15px 0; }
+.rf-weekstrip button { padding: 7px 0 5px; border-radius: 12px; display: grid; justify-items: center; gap: 3px; }
+.rf-weekstrip button[data-active="true"] { background: rgb(var(--daily-mint) / .18); box-shadow: inset 0 0 0 1px rgb(var(--daily-mint) / .6); }
+.rf-weekstrip span { font-size: 11px; color: rgb(var(--daily-muted)); }
+.rf-weekstrip i { width: 4px; height: 4px; border-radius: 50%; }
+.rf-weekstrip i[data-recorded="true"] { background: currentColor; }
+.rf-date-line { border-top: 1px solid var(--line); padding-top: 10px; color: rgb(var(--daily-muted)); font-size: 13px; }
+.rf-date-line input { margin-left: 4px; max-width: 100%; background: transparent; color: rgb(var(--daily-ink)); }
+.rf-date-line button, .rf-buttons button, .rf-conflict button { text-decoration: underline; text-underline-offset: 4px; padding: 5px 2px; }
+.rf-field { display: grid; gap: 7px; margin-bottom: 22px; }
+.rf-question { font-size: 16px; font-weight: 560; line-height: 1.65; word-break: keep-all; }
+.rf-field textarea { width: 100%; resize: vertical; background: rgb(var(--daily-bg)); border: 1px solid var(--line); border-radius: 11px; padding: 10px; font-size: 16px; line-height: 1.6; }
+.rf-save { border-top: 1px solid var(--line); padding-top: 14px; }
+.rf-save span, .rf-scope, .rf-history p, .rf-backup p, .rf-sources p { font-size: 13px; line-height: 1.65; color: rgb(var(--daily-muted)); }
+.rf-primary { flex-shrink: 0; padding: 11px 15px; border-radius: 12px; font-size: 14px; font-weight: 700; }
+.rf-sources h3 { font-weight: 650; }
+.rf-sources details, .rf-sources > p, .rf-history ul, .rf-history p, .rf-backup p { margin-top: 10px; }
+.reflection summary { cursor: pointer; }
+.rf-sources summary span, .rf-history button span { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 13px; color: rgb(var(--daily-muted)); }
+.rf-sources details p, .rf-conflict p { white-space: pre-wrap; overflow-wrap: anywhere; margin: 10px 0; }
+.rf-conflict { padding: 12px; border: 1px solid var(--line); border-radius: 10px; margin-bottom: 12px; }
+.rf-conflict button + button { margin-left: 12px; }
+.rf-history, .rf-backup { padding: 12px 4px; border-bottom: 1px solid var(--line); font-size: 14px; min-width: 0; }
+.rf-history button { display: block; text-align: left; width: 100%; padding: 8px 0; }
+.rf-sources { min-width: 0; }
+.rf-buttons { margin-top: 8px; gap: 20px; }

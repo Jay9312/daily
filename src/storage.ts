@@ -177,7 +177,10 @@ export function exportDailyData(data = loadDailyData()): string {
 }
 
 export function importDailyData(json: string): DailyData {
-  const parsed = JSON.parse(json) as Partial<DailyData>;
+  const parsed = JSON.parse(json);
+  if (parsed?.format === "daily.reflection") {
+    throw new Error("성찰 백업은 성찰 화면에서 복원하세요.");
+  }
   return saveDailyData(normalizeData(parsed));
 }
 

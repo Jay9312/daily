@@ -4,6 +4,7 @@ import { AnalyticsScreen } from "../features/analytics/AnalyticsScreen";
 import { HabitsHubScreen } from "../features/habits/HabitsHubScreen";
 import { HeatmapsScreen } from "../features/heatmaps/HeatmapsScreen";
 import { LifeCalendarScreen } from "../features/life-calendar/LifeCalendarScreen";
+import { ReflectionScreen } from "../features/reflection/ReflectionScreen";
 import { MatrixScreen } from "../features/matrix/MatrixScreen";
 import { SettingsScreen } from "../features/settings/SettingsScreen";
 import { WidgetPreviewScreen } from "../features/widgets/WidgetPreviewScreen";
@@ -23,7 +24,10 @@ function useHashRoute() {
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
-  return useMemo(() => findRoute(path), [path]);
+  return useMemo(() => {
+    const [pathname, query] = path.split("?");
+    return { route: findRoute(pathname), date: new URLSearchParams(query).get("date") ?? undefined };
+  }, [path]);
 }
 
 function hexToRgb(hex: string) {
@@ -102,7 +106,11 @@ function MoreScreen() {
   );
 }
 
-function ScreenContent({ route }: { route: RouteDefinition }) {
+function ScreenContent({ route, date }: { route: RouteDefinition; date?: string }) {
+  if (route.id === "reflection") {
+    return <ReflectionScreen key={date ?? "today"} initialDate={date} />;
+  }
+
   if (route.id === "today" || route.id === "calendar") {
     return <LifeCalendarScreen />;
   }
@@ -135,7 +143,7 @@ function ScreenContent({ route }: { route: RouteDefinition }) {
 }
 
 function DailyShell() {
-  const route = useHashRoute();
+  const { route, date } = useHashRoute();
   const { data } = useDaily();
   useThemeSync();
 
@@ -151,7 +159,7 @@ function DailyShell() {
           <h1 className="mt-3 text-4xl font-semibold tracking-normal">{route.label}</h1>
           <p className="mt-2 text-sm leading-6 text-daily-muted">{route.subtitle}</p>
         </header>
-        <ScreenContent route={route} />
+        <ScreenContent route={route} date={date} />
       </main>
       <BottomTabs activeRoute={route} />
     </div>
