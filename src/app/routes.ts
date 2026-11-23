@@ -4,6 +4,7 @@ import {
   Grid2X2,
   Grid3X3,
   ListChecks,
+  NotebookPen,
   MoreHorizontal,
   Settings,
   Smartphone,
@@ -14,6 +15,7 @@ export type RouteId =
   | "today"
   | "habits"
   | "calendar"
+  | "reflection"
   | "matrix"
   | "analytics"
   | "heatmaps"
@@ -50,6 +52,13 @@ export const routes: RouteDefinition[] = [
     label: "Today",
     subtitle: "Todos, habits, goals",
     icon: CalendarDays,
+  },
+  {
+    id: "reflection",
+    path: "/reflection",
+    label: "성찰",
+    subtitle: "매일의 선택을 적고, 한 주의 기록을 다시 읽습니다.",
+    icon: NotebookPen,
   },
   {
     id: "matrix",
@@ -96,7 +105,7 @@ export const routes: RouteDefinition[] = [
 ];
 
 export const primaryTabs = routes.filter((route) =>
-  ["today", "habits", "matrix", "more"].includes(route.id),
+  ["today", "habits", "reflection", "matrix", "more"].includes(route.id),
 );
 
 export const moreRoutes = routes.filter((route) =>

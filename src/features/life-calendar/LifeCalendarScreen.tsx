@@ -553,6 +553,13 @@ export function LifeCalendarScreen() {
         <WeekStrip days={weekDays} todayKey={todayKey} selectedDate={selectedDate} onSelectDate={setSelectedDate} />
       </header>
 
+      {selectedDate <= todayKey && (
+        <a href={`#/reflection?date=${selectedDate}`}
+          className="block rounded-2xl border border-daily-mint/30 bg-daily-mint/10 px-4 py-3 text-sm font-semibold">
+          선택한 날의 성찰 열기
+        </a>
+      )}
+
       <SectionList title="Todo Items" Icon={ListTodo} count={todos.length}>
         {todos.length === 0 ? (
           <EmptyLine text="No todo items on this day." />

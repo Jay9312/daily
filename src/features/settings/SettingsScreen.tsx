@@ -82,15 +82,15 @@ export function SettingsScreen() {
       try {
         actions.importData(String(reader.result));
         setImportStatus("Import complete.");
-      } catch {
-        setImportStatus("Import failed. Check that the file is a Daily JSON export.");
+      } catch (error) {
+        setImportStatus(error instanceof Error ? error.message : "Import failed. Check that the file is a Daily JSON export.");
       }
     };
     reader.readAsText(file);
   };
 
   const resetData = () => {
-    if (window.confirm("Reset all local Daily data to the starter data? Current records will be lost.")) {
+    if (window.confirm("Reset habits, tasks, goals, schedules and settings to starter data? Reflection records are stored separately.")) {
       actions.resetData();
       setImportStatus("Data reset.");
     }
@@ -118,7 +118,7 @@ export function SettingsScreen() {
       <SettingCard>
         <div className="mb-4 flex items-center gap-2">
           <Cloud className="h-5 w-5 text-daily-mint" />
-          <h2 className="text-lg font-semibold">Supabase Sync</h2>
+          <h2 className="text-lg font-semibold">Planner Sync</h2>
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-black/20 p-3">
@@ -276,7 +276,8 @@ export function SettingsScreen() {
       </SettingCard>
 
       <SettingCard>
-        <p className="mb-4 text-lg font-semibold">Data</p>
+        <p className="mb-2 text-lg font-semibold">Data</p>
+        <p className="mb-4 text-sm text-daily-muted">습관·목표·일정·할 일과 설정의 백업 및 초기화입니다. 성찰 기록은 <a className="underline" href="#/reflection">성찰 화면</a>에서 따로 백업하세요.</p>
         <div className="grid grid-cols-2 gap-2">
           <button
             type="button"
@@ -315,7 +316,7 @@ export function SettingsScreen() {
           className="mt-3 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-red-400/20 bg-red-500/10 text-sm font-semibold text-red-200"
         >
           <RefreshCcw className="h-4 w-4" />
-          Reset all data
+          Reset planner data
         </button>
       </SettingCard>
 
